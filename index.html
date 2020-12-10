@@ -4,15 +4,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="main.css">
     <title>Fresh Find</title>
 </head>
 
 <body>
-    <form action="index.html" id="form" method="get">
-        <label>New Fresh List:</label>
-        <input type="text">
-        <button type="submit" id="btn" name="button">Submit</button>
-    </form>
+    <h1>Fresh Find App</h1>
+
+    <div id="container">
+        
+        <form action="index.html" id="list-form" method="get">
+            <label>New Fresh List:</label>
+            <input type="text" id="list-input">
+            <button type="submit" id="btn" name="button">Submit</button>
+        </form>
+
+    <ul id="lists">
+
+    </ul>
+
+    </div>
 
     <script src="src/index.js"></script>
 </body>

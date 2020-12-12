@@ -4,28 +4,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" type="text/css" href="styles/main.css">
     <title>Fresh Find</title>
 </head>
 
 <body>
-    <h1>Fresh Find App</h1>
-
+    
     <div id="container">
+
+        <div class="header">
+            <h1>Fresh Find App</h1>
+        </div>
+
+        <div id="list-form">
+
+        </div>
+
+        <div id="item-form">
+                    
+        </div>
         
-        <form action="index.html" id="list-form" method="get">
-            <label>New Fresh List:</label>
-            <input type="text" id="list-input">
-            <button type="submit" id="btn" name="button">Submit</button>
-        </form>
+        <div id="lists-container">
 
-    <ul id="lists">
+        </div>
 
-    </ul>
+        <div id="items-container">
+        
+        </div>
 
     </div>
+    
 
     <script src="src/index.js"></script>
+    <script src="src/item.js"></script>
+    <script src="src/list.js"></script>
+
 </body>
 
 </html>

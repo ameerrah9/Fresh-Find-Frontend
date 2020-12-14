@@ -12,10 +12,6 @@ const itemURL = 'http://localhost:3000/items'
 // AJAX requests - fetch requests
 // read - fetch lists index - list out all lists
 
-// create - create a new list
-
-// delete - delete a list
-
 document.addEventListener("DOMContentLoaded", () => {
   fetchItems()
   fetchLists()
@@ -66,10 +62,16 @@ function createListForm() {
   listForm.innerHTML +=
   `
   <form action="index.html" id="list-form" method="get">
-    <label>New Fresh List:</label>
-    <input type="text" id="name" value="Create List">
-    <button type="submit" id="btn" name="button">+</button>
-  </form>
+    <div class="mb-3">
+      <label for="createList" class="list-form">New Fresh List:</label>
+      <input type="text" class="form-control" id="name" Create a List>
+      </div>
+      <div class="mb-3">
+      <label for="Items" class="item--form">Items</label>
+      <textarea class="form-control" id="content" rows="3"></textarea>
+      </div>
+      <button type="submit" id="btn" name="button"class="btn btn-success">+</button><br>
+  </form><br>
   `
 
   listForm.addEventListener("submit", submitList)
@@ -110,7 +112,11 @@ event.preventDefault();
     }
 
     fetch(listURL, configObj)
-    .then(resp => console.log(resp))
+    .then(resp => resp.json())
+    .then(list => {
+      let l = new List(list.id)
+      l.renderList();
+    })
 
     // renderList(listInput.value);
 }
@@ -135,3 +141,15 @@ event.preventDefault();
       
 //           renderItem(itemInput.value);
 //       }
+
+// delete - delete a list
+
+function deleteList() {
+  let listId = parseInt(event.target.dataset.id)
+
+  fetch(`${listURL}/${listId}`, {
+      method: "DELETE"
+  })
+
+  this.location.reload()
+}

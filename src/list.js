@@ -18,6 +18,7 @@ class List {
             <h3>Market Inventory Lists For:</h3>
             <li>${this.name}</li>
         </div>
+        <button class="btn btn-danger" data-id=${this.id} onclick="deleteList()">Clear List</button>
         `
     }
 }

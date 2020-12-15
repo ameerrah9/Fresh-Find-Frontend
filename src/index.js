@@ -12,28 +12,38 @@ const itemURL = 'http://localhost:3000/items'
 // AJAX requests - fetch requests
 // read - fetch lists index - list out all lists
 
+//as soon as the user loads the page we load the DOM
 document.addEventListener("DOMContentLoaded", () => {
   fetchItems()
-  fetchLists()
-  createListForm()
+  //fetchLists()
+  //createListForm()
 })
 // read - fetch lists from index
-function fetchLists() {
+// making a GET request when the browser loads
+  function fetchLists() {
   //fetch(`${BASE_URL}/lists`)
   //or
-  fetch(listURL)
-  .then(resp => resp.json())
-  .then(lists => {
-    //lists.forEach(list => 
-    for (const list of lists){
-      //console.log("rails obj", list) 
-      let fl = new List(list.id, list.name)
-      fl.renderList();
-    }
-    //renderList(list.data.attributes)))
+    fetch(listURL) // choose endpoint
+    .then(resp => resp.json()) // catch response and turn into json by parsing
+    .then(lists => {
+      lists.data.forEach(list => {
+        //console.log("rails obj", list) 
+        const listMarkup = 
+        `
+          <div data-id=${list.id}>
+            <h3>${list.attributes.name}</h3>
+            <p>${list.attributes.items[0].content}</p>
+            <button data-id=${list.id}>Edit</button>
+            <button data-id=${list.id}>Delete</button>
+          </div>
+          <br><br>
+          `;
 
-  })
-}
+          document.querySelector("#lists-container").innerHTML += listMarkup
+      })
+    })
+  }
+
 
 // read - fetch items from index
 function fetchItems() {
@@ -42,16 +52,19 @@ function fetchItems() {
   fetch(itemURL)
   .then(resp => resp.json())
   .then(items => {
-    //lists.forEach(list => 
-    for (const item of items){
-      //console.log("rails obj", item) 
-      let i = new Item(item.id, item.content)
-      //console.log("js object", i);
-      i.renderItem();
-    }
+    items.data.forEach(item => {
+      const itemMarkup = 
+      `
+        <div data-id=${item.id}>
+          <h3>${item.attributes.content}</h3>
+          <button data-id=${item.id}>Edit</button>
+          <button data-id=${item.id}>Delete</button>
+        </div>
+        <br><br>
+      `;
 
-    //renderList(list.data.attributes)))
-
+        document.querySelector("#items-container").innerHTML += itemMarkup
+    })
   })
 }
 

@@ -16,7 +16,7 @@ const itemURL = 'http://localhost:3000/items'
 document.addEventListener("DOMContentLoaded", () => {
   fetchItems()
   //fetchLists()
-  //createListForm()
+  createItemForm()
 })
 // read - fetch lists from index
 // making a GET request when the browser loads
@@ -27,12 +27,12 @@ document.addEventListener("DOMContentLoaded", () => {
     .then(resp => resp.json()) // catch response and turn into json by parsing
     .then(lists => {
       lists.data.forEach(list => {
-        //console.log("rails obj", list) 
+        console.log("rails obj", list) 
         const listMarkup = 
         `
           <div data-id=${list.id}>
             <h3>${list.attributes.name}</h3>
-            <p>${list.attributes.items[0].content}</p>
+            <p>${list.attributes.items.content}</p>
             <button data-id=${list.id}>Edit</button>
             <button data-id=${list.id}>Delete</button>
           </div>
@@ -69,69 +69,63 @@ function fetchItems() {
 }
 
 // create a list
-function createListForm() {
-  let listForm = document.getElementById("list-form")
+function createItemForm() {
+  let itemForm = document.getElementById("item-form-container")
 
-  listForm.innerHTML +=
+  itemForm.innerHTML +=
   `
-  <form action="index.html" id="list-form" method="get">
-    <div class="mb-3">
-      <label for="createList" class="list-form">New Fresh List:</label>
-      <input type="text" class="form-control" id="name" Create a List>
-      </div>
-      <div class="mb-3">
-      <label for="Items" class="item--form">Items</label>
-      <textarea class="form-control" id="content" rows="3"></textarea>
-      </div>
-      <button type="submit" id="btn" name="button"class="btn btn-success">+</button><br>
+  <form action="index.html" id="item-form" method="get">
+  <br>
+  <div class="mb-3">
+      <h3>Create Your List Here!</h3>
+      <label for="createItems" class="item-form">Item</label>
+      <input type="text" name="content" class="form-control" id="item-content" placeholder="Enter Your Item">
+    </div>
+    <br>
+    <div>
+    <p>Choose List</p>
+      <select id="list" name="list">
+        <option value="1">Vegetables</option>
+        <option value="2">Fruit</option>
+        <option value="3">Pastries</option>
+        <option value="4">Milk</option>
+        <option value="5">Livestock</option>
+        <option value="6">Crops</option>
+        <option value="7">Nuts</option>
+        <option value="8">Berries</option>
+      </select>
+    </div>
+    <br><br>
+
+    <input type="submit" id="btn" name="button" class="btn btn-success"></input><br>
   </form><br>
   `
 
-  listForm.addEventListener("submit", submitList)
+  itemForm.addEventListener("submit", (e) => submitItem(e))
 
 }
 
-// // create a item
-// // function createItemForm() {
-// //   let itemForm = document.getElementById("item-form")
-
-// //   itemForm.innerHTML +=
-// //   `
-// //   <form action="index.html" id="item-form" method="get">
-// //     <label>New Item:</label>
-// //     <input type="text" id="item-input" value="Add Item">
-// //     <button type="submit" id="btn" name="button">+</button>
-// //   </form>
-// //   `
-
-// //   submitItem();
-// // }
 
 // submit list
-function submitList() {
-event.preventDefault();
-  let name = document.getElementById("name").value
+function itemFormHandler(e) {
+  e.preventDefault();
+  const content = document.querySelector("#item-content").value;
+  const listInput = document.querySelector("#list").value;
+  const listID = parseInt(listInput)
 
-  let list = {
-    name: name
-  }
-    const configObj = {
-        method: "POST",
-        headers:{
-            "Content-type": "application/json",
-            "Accept": "application/json"
-        },
-        body: JSON.stringify(list)
-    }
+  itemPostFetch(content, listID)
+}
 
-    fetch(listURL, configObj)
-    .then(resp => resp.json())
-    .then(list => {
-      let l = new List(list.id)
-      l.renderList();
-    })
+function itemPostFetch(item_content, list_id) {
 
-    // renderList(listInput.value);
+  const configObj = {
+    method: "POST",
+    headers:{
+        "Content-type": "application/json",
+        "Accept": "application/json"
+    },
+    body: JSON.stringify(item)
+}
 }
 
 // // submit item
@@ -161,6 +155,24 @@ function deleteList() {
   let listId = parseInt(event.target.dataset.id)
 
   fetch(`${listURL}/${listId}`, {
+      method: "DELETE"
+  })
+
+  this.location.reload()
+}
+
+function editList() {
+
+}
+
+function editList() {
+  
+}
+
+function deleteItem() {
+  let itemId = parseInt(event.target.dataset.id)
+
+  fetch(`${itemURL}/${itemId}`, {
       method: "DELETE"
   })
 

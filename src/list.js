@@ -6,21 +6,6 @@ class List {
 
         
     // instance method thats going to render the object to the DOM
-
-    renderList() {
-
-        let listsDiv = document.getElementById("lists-container");
-        
-        listsDiv.innerHTML +=
-
-        `
-        <div id="lists">
-            <h3>Market Inventory Lists For:</h3>
-            <li>${this.name}</li>
-        </div>
-        <button class="btn btn-danger" data-id=${this.id} onclick="deleteList()">Clear List</button>
-        `
-    }
 }
         //         //console.log(listInput.value);
 //         const li = document.createElement('li');

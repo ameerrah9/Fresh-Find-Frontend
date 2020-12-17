@@ -1,72 +1,25 @@
 const listURL = 'http://localhost:3000/lists'
-
-//listForm.addEventListener("submit", List.submitList)
+const itemURL = 'http://localhost:3000/items'
 
 document.addEventListener("DOMContentLoaded", () => {
-
   fetchLists()
-  renderList()
-  // createListForm()
+  createListForm()
 })
-
-function fetchLists() {
-  fetch(listURL)
-  .then(resp => resp.json())
-  .then(lists => {
-      for(let list of lists){
-console.log(list)      }
-      this.renderList()
-  })
-}
-
-function renderList() {
-  const listForm =
-  `
-  <form id="list-form" method="get" class="clearfix mt-4">
-      <div class="mb-3">
-          <p>Enter Your List Name</p>
-          <button type="submit" class="block float-right w-2/12"><i class="fa fa-plus p-4 z--1 bg-black-400"></i></button>
-          <input type="text" name="name" class="block float-left w-10/12 p-3" id="list-name" placeholder="Enter List Name"><br>
-      </div>
-  </form><br></br>
-  `
-  const itemForm =
-  `
-  <form id="item-form" method="get" class="clearfix mt-4">
-      <div class="mb-3">
-      <p>Enter Your Item</p>
-      <button type="submit" class="block float-right w-2/12"><i class="fa fa-plus p-4 z--1 bg-black-300"></i></button>
-      <input type="text" name="name" class="block float-left w-10/12 p-3" id="item-content" placeholder="Enter Item"><br><br>
-      <br>
-      </div>
-  </form>`;
-
-  const listMarkup = 
-  `
-  <div data-id=${list.id}>
-  <h3>${list.data.attributes.name}</h3>
-  <li id="lists">${list.data.attributes? list.data.attributes.items.map(myItem).join("") : null} </li>
-      ${itemForm}
-  <a href="#" class="my-4 text-left"><i onclick="deleteList(${list.id})"class="fa fa-trash-alt">Delete List</i></a>
-  </div>
-  <br><br>
-  `;
-
-  deleteList.addEventListener("click", this.deleteList)
-  itemForm.addEventListener("submit", Item.createItem)
-  listForm.addEventListener("submit", this.createList)
-
-  const listsUL = document.getElementById("all-lists")
-  listsUL.appendChild(listMarkup)
-
-  const listContainer = document.getElementById("lists-container")
-  listContainer.appendChild(listForm)
-  
-  listForm.reset()
-}
-
 // read - fetch lists from index
 // making a GET request when the browser loads
+  function fetchLists() {
+  //fetch(`${BASE_URL}/lists`)
+  //or
+    fetch(listURL) // choose endpoint
+    .then(resp => resp.json()) // catch response and turn into json by parsing
+    .then(lists => {
+      lists.data.forEach(list => {
+        let newList = new List(list)
+        render(list)
+        //createItemForm()
+      })
+    })
+  }
 
   function myItem(item) {
     return `
@@ -85,15 +38,27 @@ function renderList() {
     </ul>
     </li>
     `
-    createItemForm()
   }
 
   function render(list) {
+    const itemMarkup =
+    `
+      <form id="list-form" method="get" class="clearfix mt-4">
+          <div class="mb-3">
+            <p>Enter Your Item</p>
+            <button type="submit" class="block float-right w-2/12"><i class="fa fa-plus p-4 z--1 bg-black-300"></i></button>
+            <input type="text" name="name" class="block float-left w-10/12 p-3" id="item-content" placeholder="Enter Item"><br><br>
+      <br>
+          </div>
+      </form>
+    `
+    //createItemForm()
       const listMarkup = 
       `
         <div data-id=${list.id}>
           <h3>${list.attributes.name}</h3>
           <ul id="lists">${list.attributes.items.map(myItem).join("")}</ul>
+          ${itemMarkup}
           <a href="#" class="my-4 text-left"><i onclick="deleteList(${list.id})"class="fa fa-trash-alt">Delete List</i></a>        
           </div>
         <br><br>
@@ -103,7 +68,7 @@ function renderList() {
       }
 // create a list
 function createListForm() {
-  let listForm = document.getElementById("list-form")
+  let listForm = document.getElementById("list-form-container")
 
   listForm.innerHTML +=
   `
@@ -125,7 +90,7 @@ function createListForm() {
 
 }
 
-function fetchLists(name) {
+function listPostFetch(name) {
   const bodyData = {
     name: name
   }
@@ -144,6 +109,7 @@ function fetchLists(name) {
     return resp.json()})
     
   .then(list => {
+    //fetchItems();
     const listMarkup = 
     `
     <div data-id=${list.id}>
@@ -165,9 +131,9 @@ function listFormHandler(e) {
   listPostFetch(name)
 }
 
-const itemForm =
+const itemMarkup =
     `
-      <form id="item-form" method="get" class="clearfix mt-4">
+      <form id="list-form" method="get" class="clearfix mt-4">
           <div class="mb-3">
             <p>Enter Your Item</p>
             <button type="submit" class="block float-right w-2/12"><i class="fa fa-plus p-4 z--1 bg-black-300"></i></button>
@@ -177,23 +143,29 @@ const itemForm =
       </form>
     `;
 function createItemForm() {
-  document.querySelector("#items-container").innerHTML += itemForm
+  let itemForm = document.getElementById("item-form-container")
 
-  itemForm.addEventListener("submit", (e) => {
-    console.log(e)
-    itemFormHandler(e);
-    e.preventDefault()
-    
-  })
+  itemForm.innerHTML +=
+  `
+    <form id="list-form" method="get" class="clearfix mt-4">
+        <div class="mb-3">
+          <p>Enter Your Item</p>
+          <button type="submit" class="block float-right w-2/12"><i class="fa fa-plus p-4 z--1 bg-black-300"></i></button>
+          <input type="text" name="name" class="block float-left w-10/12 p-3" id="item-content" placeholder="Enter Item"><br><br>
+    <br>
+        </div>
+    </form>
+  `
+  itemForm.addEventListener("submit", (e) => itemFormHandler(e))
 
 }
 
 function itemFormHandler(e) {
   e.preventDefault();
-  console.log(e)
   const content = document.querySelector("#item-content").value;
-  const listInput = document.querySelector("#list-selection").value;
+  //const listInput = document.querySelector("#list-selection").value;
   const listID = parseInt(listInput)
+
   itemPostFetch(content, listID)
 }
 
@@ -213,11 +185,9 @@ function itemPostFetch(item_content, list_id) {
   }
 
   fetch(itemURL, configObj)
-  console.log(itemURL)
-  .then(resp => {
-    return resp.json()})
-
+  .then(resp => resp.json())
   .then(item => {
+    //fetchItems();
     const itemMarkup = 
     `
     <div data-id=${item.id}>

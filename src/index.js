@@ -71,7 +71,7 @@ function createListForm() {
 
   listForm.innerHTML +=
   `
-  <form id=create-list method="get" class="clearfix mt-4">
+  <form id="list-form" method="get" class="clearfix mt-4">
     <div class="mb-3">
       <p>Enter Your List Name</p>
       <button type="submit" class="block float-right w-2/12"><i class="fa fa-plus p-4 z--1 bg-black-400"></i></button>
@@ -80,7 +80,12 @@ function createListForm() {
   </form><br>
   `
 
-  listForm.addEventListener("submit", listFormHandler(e))
+  listForm.addEventListener("submit", (e) => {
+      listFormHandler(e); 
+      e.preventDefault()
+  
+    })
+
 
 }
 
@@ -88,32 +93,34 @@ function listPostFetch(name) {
   const bodyData = {
     name: name
   }
-
+  
   const configObj = {
     method: "POST",
     headers:{
-        "Content-type": "application/json",
-        "Accept": "application/json"
+      "Content-type": "application/json",
+      "Accept": "application/json"
     },
     body: JSON.stringify(bodyData)
   }
-
+  
   fetch(listURL, configObj)
-  .then(resp => resp.json())
+  .then(resp => {
+    return resp.json()})
+    
   .then(list => {
     //fetchItems();
     const listMarkup = 
     `
     <div data-id=${list.id}>
-      <h3>${list.attributes.name}</h3>
-      <ul id="lists">${list.attributes.items.map(myItem).join("")}</ul>
+      <h3>${list.data.attributes.name}</h3>
+      <ul id="lists">${list.data.attributes? list.data.attributes.items.map(myItem).join("") : null} </ul>
           ${itemMarkup}
       <a href="#" class="my-4 text-left"><i onclick="deleteList(${list.id})"class="fa fa-trash-alt">Delete List</i></a>
     </div>
   <br><br>
     `
 
-    document.querySelector("#lists-container").innerHTML += listMarkup
+    document.querySelector("#lists-container").innerHTML += listMarkup;
   })
 }
 // submit list
@@ -123,6 +130,17 @@ function listFormHandler(e) {
   listPostFetch(name)
 }
 
+const itemMarkup =
+    `
+      <form id="list-form" method="get" class="clearfix mt-4">
+          <div class="mb-3">
+            <p>Enter Your Item</p>
+            <button type="submit" class="block float-right w-2/12"><i class="fa fa-plus p-4 z--1 bg-black-300"></i></button>
+            <input type="text" name="name" class="block float-left w-10/12 p-3" id="item-content" placeholder="Enter Item"><br><br>
+      <br>
+          </div>
+      </form>
+    `;
 function createItemForm() {
   let itemForm = document.getElementById("item-form-container")
 

@@ -1,4 +1,4 @@
-* {
+/* /* * {
     margin-left: 10px;
 }
 
@@ -18,13 +18,18 @@ input {
     font-size: 1.5em;
 }
 
+section {
+    background: #fff;
+    padding: 2em;
+
+}
 /* .container {
     width: 960px;
     margin: auto;
     margin-top: 50px;
 } */
 
-ul {
+/* ul {
     padding-left: 20px;
 }
 
@@ -35,5 +40,4 @@ ul {
 #editable {
     border: 1px solid black;
     padding: 20px;
-}
-
+} */

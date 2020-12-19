@@ -1,11 +1,20 @@
 const listURL = 'http://localhost:3000/lists'
 
+
+const listForm = document.getElementById('lists-container');
 //listForm.addEventListener("submit", List.submitList)
 
-document.addEventListener("DOMContentLoaded", () => {
+const listSection = document.getElementById('all-lists');
 
-  fetchLists()
-  renderList()
+function showList() {
+  //when invoked will update the text content of list ul
+  listSection.textContent = ``
+  listSection.innerHTML = ``
+}
+document.addEventListener("DOMContentLoaded", () => {
+// 
+  // fetchLists()
+  // renderList()
   // createListForm()
 })
 

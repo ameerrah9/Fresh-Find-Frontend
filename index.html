@@ -17,23 +17,25 @@
             <div class="header">
                 <h1 class="text-2xl semibold border-b-4 border-red-300">Fresh Find App</h1><br>
             </div>
-            <form action="index.html" method="post">
-                <fieldset>
-                    <legend class="px-2" for="name">Add a List Here!</legend><br><br>
-                    <button type="submit" class="block float-right w-2/12"><i class="fa fa-plus p-4 z--1 bg-black-200"></i></button>
-                    <input type="text" name="list_name" class="block float-left w-10/12 p-3" id="list-name" placeholder="Enter List Name"><br><br>
-                </fieldset>  
-            </form><br>
-            
-            <div id="lists-container" class="px-4 bg-green-100 sm:min-h-screen rounded-md shadow">
-                <ul id="all-lists">
 
-                </ul>
+            
+            <div id="list-container">
+                <form id="create-list-form">
+                    <fieldset>
+                        <legend class="px-2" for="list">Add a List Here!</legend><br>
+                        <button type="submit" class="block float-right w-2/12"><i class="fa fa-plus p-4 z--1 bg-black-200"></i></button>
+                        <input type="text" name="list_name" class="block float-left w-10/12 p-3" id="submit-list" placeholder="Enter List Name"><br><br>
+                    </fieldset> 
+                </form><br>
+                
             </div>
             
         </section>
     </div>
-    
+
+    <script src="src/adapters/listsAdapter.js" defer></script>
+    <script src="src/list.js"></script>
+    <script src="src/item.js"></script>
     <script src="src/index.js"></script>
 
 </body>

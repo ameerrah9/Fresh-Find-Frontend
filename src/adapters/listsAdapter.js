@@ -1,12 +1,16 @@
-class Item {
-    constructor(item) {
-      this.list_id = item.list_id
-      this.content = item.content
-      this.id = item.id; // to grab same id from my data base
+class ListsAdapter {
+    constructor() {
+        this.listURL = "http://localhost:3000/lists"
     }
 
-    postItems(data) {
-        return fetch(this.baseURL, {
+    getLists() {
+        return fetch(this.listURL)
+        .then(resp => resp.json())
+        .then(json => json.data)
+    }
+
+    postLists(data) {
+        return fetch(this.listURL, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -17,8 +21,8 @@ class Item {
         .catch(err => alert(err))
     }
 
-    deleteItems(id) {
-        return fetch(listURL, {
+    deleteLists(id) {
+        return fetch(`${this.listURL}/${id}`, {
             method: "DELETE",
             headers: {
                 "Content-Type": "application/json"
@@ -26,5 +30,5 @@ class Item {
         })
         .then(resp => resp.json())
     }
-
+    
 }

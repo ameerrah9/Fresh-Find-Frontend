@@ -1,34 +1,17 @@
 const listURL = 'http://localhost:3000/lists'
 
-
-const listForm = document.getElementById('lists-container');
-//listForm.addEventListener("submit", List.submitList)
-
-const listSection = document.getElementById('all-lists');
-
 function showList() {
   //when invoked will update the text content of list ul
   listSection.textContent = ``
   listSection.innerHTML = ``
 }
 document.addEventListener("DOMContentLoaded", () => {
-// 
-  // fetchLists()
-  // renderList()
-  // createListForm()
-})
-
-function fetchLists() {
-  fetch(listURL)
-  .then(resp => resp.json())
-  .then(lists => {
-      for(let list of lists){
-console.log(list)      }
-      this.renderList()
-  })
+  const list = new List()
+  list.renderLists();
 }
+);
 
-function renderList() {
+function renderList(name) {
   const listForm =
   `
   <form id="list-form" method="get" class="clearfix mt-4">
@@ -132,40 +115,6 @@ function createListForm() {
     })
 
 
-}
-
-function fetchLists(name) {
-  const bodyData = {
-    name: name
-  }
-  
-  const configObj = {
-    method: "POST",
-    headers:{
-      "Content-type": "application/json",
-      "Accept": "application/json"
-    },
-    body: JSON.stringify(bodyData)
-  }
-  
-  fetch(listURL, configObj)
-  .then(resp => {
-    return resp.json()})
-    
-  .then(list => {
-    const listMarkup = 
-    `
-    <div data-id=${list.id}>
-      <h3>${list.data.attributes.name}</h3>
-      <ul id="lists">${list.data.attributes? list.data.attributes.items.map(myItem).join("") : null} </ul>
-          ${itemMarkup}
-      <a href="#" class="my-4 text-left"><i onclick="deleteList(${list.id})"class="fa fa-trash-alt">Delete List</i></a>
-    </div>
-  <br><br>
-    `
-
-    document.querySelector("#lists-container").innerHTML += listMarkup;
-  })
 }
 // submit list
 function listFormHandler(e) {

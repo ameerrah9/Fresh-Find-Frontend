@@ -7,7 +7,9 @@ function showList() {
 }
 document.addEventListener("DOMContentLoaded", () => {
   const list = new List()
-  list.renderLists();
+  const item = new Item()
+  list.renderLists()
+  item.renderItems()
 }
 );
 

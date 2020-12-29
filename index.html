@@ -23,20 +23,23 @@
                 <form id="create-list-form">
                     <fieldset>
                         <legend class="px-2" for="list">Add a List Here!</legend><br>
+                        <input type="text" name="list_name" class="block float-left w-10/12 p-3" id="list-input" placeholder="Enter List Name">
                         <button type="submit" class="block float-right w-2/12"><i class="fa fa-plus p-4 z--1 bg-black-200"></i></button>
-                        <input type="text" name="list_name" class="block float-left w-10/12 p-3" id="submit-list" placeholder="Enter List Name"><br><br>
                     </fieldset> 
                 </form><br>
+                <ul id="list-ul"
                 
+                </ul><br>
             </div>
             
         </section>
     </div>
 
-    <script src="src/adapters/listsAdapter.js" defer></script>
-    <script src="src/list.js"></script>
-    <script src="src/item.js"></script>
-    <script src="src/index.js"></script>
+    <script src="src/adapters/listsAdapter.js"></script>
+    <script src="src/adapters/itemsAdapter.js"></script>
+    <script src="src/components/list.js"></script>
+    <script src="src/components/item.js"></script>
+    <script src="src/components/index.js"></script>
 
 </body>
 </html>

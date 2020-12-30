@@ -34,7 +34,6 @@ class Item {
         .catch(err => alert(err))
     }
 
-    //renderComment
     createItemCard(itemList) {
         const li = document.createElement('li')
         li.dataset.id = this.list_id

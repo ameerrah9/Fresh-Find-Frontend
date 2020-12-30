@@ -24,8 +24,9 @@ https://github.com/ameerrah9/Fresh-Find-BackEnd
 5. Run rails s to run server
 
 **To install Frontend**
-Open another tab in terminal and cd into fresh-find-frontend directory.
-Inside fresh-find-frontend directory, type open index.html to open index.html in the browser to begin navigating through this application.
+
+1. Open another tab in terminal and cd into fresh-find-frontend directory.
+2. Inside fresh-find-frontend directory, type open index.html to open index.html in the browser to begin navigating through this application.
 
 # Tech Used
 

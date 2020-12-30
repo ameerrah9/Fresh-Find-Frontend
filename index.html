@@ -1,43 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Fresh Find</title>
-    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
-</head>
+    <link
+      href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+      integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA=="
+      crossorigin="anonymous"
+    />
+  </head>
 
-<body>
-    
-    <div class="container mx-auto sm:grid grid-cols-3 gap-4 my-4">
-        <section id="freshListContainer" class="px-4 bg-green-400 sm:min-h-screen rounded-md shadow">
+  <body>
+    <div class="container mx-auto my-4">
+      <section
+        id="freshListContainer"
+        class="px-4 bg-green-400 sm:min-h-screen rounded-md shadow"
+      >
+        <div class="header">
+          <h1 class="text-2xl semibold border-b-4 border-red-300">
+            Fresh Find App
+          </h1>
+          <br />
+        </div>
 
-            <div class="header">
-                <h1 class="text-2xl semibold border-b-4 border-red-300">Fresh Find App</h1><br>
-            </div>
-
-            
-            <div id="list-container">
-                <form id="create-list-form">
-                    <fieldset>
-                        <legend class="text-2xl" for="list">Add a List Here!</legend><br>
-                        <input type="text" name="list_name" class="block float-left w-10/12 p-3" id="list-input" placeholder="Enter List Name">
-                        <button type="submit" class="block float-right w-2/12"><i class="fa fa-plus p-4 z--1 bg-black-200"></i></button>
-                    </fieldset> 
-                </form><br>
-                <ul id="list-ul"
-                
-                </ul><br>
-            </div>
-            
-        </section>
+        <div id="list-container">
+          <form id="create-list-form" class="grid grid-cols-1 lg:grid-cols-3 gap-4">
+            <fieldset>
+              <legend class="text-2xl" for="list">Add a List Here!</legend>
+              <br />
+              <input
+                type="text"
+                name="list_name"
+                class="block float-left w-10/12 p-3"
+                id="list-input"
+                placeholder="Enter List Name"
+              />
+              <button type="submit" class="block float-right w-2/12">
+                <i class="fa fa-plus p-4 z--1 bg-black-200"></i>
+              </button>
+            </fieldset>
+          </form>
+          <br />
+          <ul id="list-ul" class="grid grid-cols-1 lg:grid-cols-3 gap-4">
+          </ul>
+          <br />
+        </div>
+      </section>
     </div>
 
     <script src="src/components/list.js"></script>
     <script src="src/components/item.js"></script>
     <script src="src/components/index.js"></script>
-
-</body>
+  </body>
 </html>

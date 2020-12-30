@@ -17,21 +17,15 @@ https://github.com/ameerrah9/Fresh-Find-BackEnd
 
 **To Install Backend**
 
-1. Clone this repo to local machine using terminal ```javascript
-   git clone <this-repo>
-
-````
-2. cd into ```javascript
-fresh-find-backend/fresh-find-backend
-``` and run ```javascript
-bundle install
-``` to install dependencies
-
+1. Clone this repo to local machine using terminal git clone <this-repo>
+2. cd into fresh-find-backend/fresh-find-backend and run bundle install to install dependencies
 3. Run rails db:migrate to create tables
-
 4. Run rails db:seed to generate seed data
-
 5. Run rails s to run server
+
+**To install Frontend**
+Open another tab in terminal and cd into fresh-find-frontend directory.
+Inside fresh-find-frontend directory, type open index.html to open index.html in the browser to begin navigating through this application.
 
 # Tech Used
 
@@ -40,4 +34,3 @@ bundle install
 - Postgresql - database
 - Rack-cors - allow for cross-orgin resource sharing
 - Fast_json_api - serializer to manage seeded data in json format
-````

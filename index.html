@@ -23,22 +23,26 @@
         class="px-4 bg-green-400 sm:min-h-screen rounded-md shadow"
       >
         <div class="header">
-          <h1 class="text-2xl semibold border-b-4 border-red-300">
-            Fresh Find App
+          <h1 class="text-4xl semibold border-b-4 border-red-300">
+            Welcome to Fresh Find App!
           </h1>
+
           <br />
         </div>
 
             
             <div id="list-container">
+                <h3 class="text-center">Welcome Farmers, use the Fresh Find application to keep track of your inventory when your next Farmer's Market rolls around!</h3>
+                <h6 class="text-center">Create a "Produce List" using your choice of name, then simply add items to your List.</h6>
                 <form id="create-list-form">
                     <fieldset>
-                        <legend class="text-2xl" for="list">Add a List Here!</legend><br>
-                        <input type="text" name="list_name" class="block float-left w-10/12 p-3" id="list-input" placeholder="Enter List Name">
+                        <legend class="text-2xl pt-4 text-indigo-500" for="list">Create a new List Below!</legend><br>
+                        <input type="text" name="list_name" class="block float-left w-10/12 p-3" id="list-input" placeholder='enter a name for your list, example "Livestock"'>
                         <button type="submit" class="block float-right w-2/12"><i class="fa fa-plus p-4 z--1 bg-black-200"></i></button>
                     </fieldset> 
                 </form><br>
                 <ul id="list-ul">
+                <h4 class="text-2xl italic text-center">All Created Lists</h4>
 
                 </ul><br>
             </div>

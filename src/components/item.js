@@ -3,16 +3,13 @@ class Item {
       this.id = item.id
       this.list_id = item.list_id
       this.content = item.content
-      this.itemsAdapter = new ItemsAdapter()
-      this.listsAdapter = new ListsAdapter()
     }
 
     static createItem(e){
         e.preventDefault()
-        const itemInput = e.target.children[0].value
-        const itemList = e.target.nextElementSibling
+        const itemInput = e.target.children.input.value
+        const itemList = document.getElementById("item-list")
         const listId = e.target.parentElement.dataset.id
-
         Item.postItems(itemInput, itemList, listId)
     
         e.target.reset()
@@ -41,10 +38,11 @@ class Item {
     createItemCard(itemList) {
         const li = document.createElement('li')
         li.dataset.id = this.list_id
-        li.innerHTML = `<br>${this.content}`
+        li.className = "py-4 col-span-10 my-2 px-2 bg-green-200 grid grid-cols-2 fst-italic"
+        li.innerHTML = `${this.content}`
     
         const deleteBtn = document.createElement('button')
-        deleteBtn.innerHTML = `<a href="#" class="my-4 text-right"><i class="fa fa-trash-alt"></i></a>`
+        deleteBtn.innerHTML = `<a href="#" class="my-4 text-right"><i class="fa fa-trash-alt"></i></a></div>`
         deleteBtn.addEventListener("click", this.deleteItem)
         li.appendChild(deleteBtn)
         itemList.appendChild(li)

@@ -28,7 +28,7 @@ class List {
     createListCard() {
         const li = document.createElement('li')
         li.dataset.id = this.id
-        li.className = "my-0 px-4 bg-green-200"
+        li.className = "my-0 px-4 bg-green-200 shadow rounded"
     
         // const h1 = document.createElement('h1')
         // h1.className = "text-2xl semibold border-b-4 border-blue"
@@ -39,7 +39,7 @@ class List {
         h1.innerHTML = `${this.name}`
     
         const deleteBtn = document.createElement("button")
-        deleteBtn.className = "text-xl semibold float-right p-3 mt-1 ml-4"
+      deleteBtn.className = "text-xl semibold float-right p-3 mt-1 ml-4 hover:opacity-50 shadow-sm hover:shadow-lg"
         deleteBtn.innerHTML = `
           <i class="fa fa-trash-alt"></i>
         `

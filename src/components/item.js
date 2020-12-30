@@ -28,7 +28,7 @@ class Item {
         })
         .then(resp => resp.json())
         .then(item => {
-            let newItem = new Item(item)
+            let newItem = new Item(item.data.attributes)
             newItem.createItemCard(itemList)
         })
         .catch(err => alert(err))

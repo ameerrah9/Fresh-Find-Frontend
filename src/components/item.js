@@ -3,6 +3,7 @@ class Item {
       this.id = item.id
       this.list_id = item.list_id
       this.content = item.content
+      this.li = document.createElement('li')
     }
 
     static createItem(e){
@@ -36,29 +37,25 @@ class Item {
 
     //renderComment
     createItemCard(itemList) {
-        const li = document.createElement('li')
-        li.dataset.id = this.list_id
-        li.className = "py-4 col-span-10 my-2 px-2 bg-gray-100 rounded shadow-inner fst-italic"
-        li.innerHTML = `${this.content}`
+        this.li.dataset.id = this.list_id
+        this.li.className = "py-4 col-span-10 my-2 px-2 bg-gray-100 rounded shadow-inner fst-italic"
+        this.li.innerHTML = `${this.content}`
     
         const deleteBtn = document.createElement('button')
         deleteBtn.className = "ml-4 px-1 float-right hover:opacity-50"
         deleteBtn.innerHTML = `<i class="fa fa-trash-alt"></i>`
-        deleteBtn.addEventListener("click", this.deleteItem)
-        li.appendChild(deleteBtn)
-        itemList.appendChild(li)
-
+        deleteBtn.addEventListener("click", (_event) => { this.deleteItem() })
+        this.li.appendChild(deleteBtn)
+        itemList.appendChild(this.li)
     }
 
     deleteItem() {
-        const itemId = this.parentElement.dataset.id
-
-        fetch(`${itemsURL}/${itemId}`, {
+        fetch(`${itemsURL}/${this.id}`, {
             method: "DELETE",
             headers: {
                 "Content-Type": "application/json"
             }
         })
-        this.parentElement.remove()
+        this.li.remove()
     }
 }

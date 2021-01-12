@@ -37,11 +37,11 @@ class Item {
 
     createItemCard(itemList) {
         this.li.dataset.id = this.list_id
-        this.li.className = "py-4 subpixel-antialiased font-medium col-span-10 my-2 px-2 bg-white w-1/5 md:w-1/7 rounded border-green-300 shadow-inner fst-italic"
+        this.li.className = "py-4 subpixel-antialiased font-medium col-span-10 my-2 px-2 bg-white w-5/12 rounded border-green-300 shadow-inner fst-italic"
         this.li.innerHTML = `${this.content}`
     
         const deleteBtn = document.createElement('button')
-        deleteBtn.className = "ml-4 px-1 float-right hover:opacity-50"
+        deleteBtn.className = "ml-2 px- float-right p-2 pt-0 mt-1 ml-2 hover:opacity-50 shadow-sm hover:shadow-sm"
         deleteBtn.innerHTML = `<i class="fa fa-trash-alt"></i>`
         deleteBtn.addEventListener("click", (_event) => { this.deleteItem() })
         this.li.appendChild(deleteBtn)

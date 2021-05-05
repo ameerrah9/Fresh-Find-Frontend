@@ -28,6 +28,13 @@ https://github.com/ameerrah9/Fresh-Find-BackEnd
 1. Open another tab in terminal and cd into fresh-find-frontend directory.
 2. Inside fresh-find-frontend directory, type open index.html to open index.html in the browser to begin navigating through this application.
 
+Simply clone this repository to your local directory.
+
+Once cloned in your terminal type the following command
+
+open index.html
+Enjoy!
+
 # Tech Used
 
 - Ruby [2.6.1]
